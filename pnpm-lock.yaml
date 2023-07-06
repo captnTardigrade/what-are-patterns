@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@hhenrichsen/motion-canvas-nord': ^1.1.1
   '@motion-canvas/2d': ^3.9.0
   '@motion-canvas/core': ^3.9.0
   '@motion-canvas/ffmpeg': ^1.1.0
@@ -10,6 +11,7 @@ specifiers:
   vite: ^4.1.4
 
 dependencies:
+  '@hhenrichsen/motion-canvas-nord': 1.1.1_@motion-canvas+core@3.9.0
   '@motion-canvas/2d': 3.9.0_vite@4.3.9
   '@motion-canvas/core': 3.9.0_vite@4.3.9
   '@motion-canvas/ffmpeg': 1.1.1_lbnxvy7sieiie336b2bds4jx3i
@@ -353,6 +355,27 @@ packages:
     dev: false
     optional: true
 
+  /@hhenrichsen/motion-canvas-nord/1.1.1_@motion-canvas+core@3.9.0:
+    resolution: {integrity: sha512-8JYrViXzgcmjag7tEr7B94nVObPrg2vvIBUySpSnz5Z4vTaVm9spaKClJegbXTAcWc5u0v7pePbeLmOUENrgfg==}
+    peerDependencies:
+      '@motion-canvas/core': ^3.9.0
+      code-fns: ^0.8.2
+    dependencies:
+      '@motion-canvas/2d': 3.9.0_vite@4.3.9
+      '@motion-canvas/core': 3.9.0_vite@4.3.9
+      '@motion-canvas/ui': 3.9.0_vite@4.3.9
+      '@motion-canvas/vite-plugin': 3.9.0_vite@4.3.9
+      vite: 4.3.9
+    transitivePeerDependencies:
+      - '@types/node'
+      - debug
+      - less
+      - sass
+      - stylus
+      - sugarss
+      - terser
+    dev: false
+
   /@motion-canvas/2d/3.9.0_vite@4.3.9:
     resolution: {integrity: sha512-7Sqie5TsLCWh0hAKUM6JAp7Ysu3qbFEAvzrb2BE1t6qy1CIGuik2VrUEShBLlX9zokPeEkQi3q0O+fOc9t7Wdw==}
     dependencies:
@@ -393,7 +416,6 @@ packages:
       '@motion-canvas/core': 3.9.0_vite@4.3.9
     transitivePeerDependencies:
       - vite
-    dev: true
 
   /@motion-canvas/vite-plugin/3.9.0_vite@4.3.9:
     resolution: {integrity: sha512-mPigErr85aHltlLsyR6qnaVkjI3Vdn/qgyziqj5t79oQjxRl7aTGgJlSxE8SxwxffwVxh1U0HEwg/vtqo75Yag==}
