@@ -1,8 +1,12 @@
-import { Node, NodeProps, Rect, RectProps, Txt, signal } from "@motion-canvas/2d";
 import {
-  SignalValue,
-  SimpleSignal,
-} from "@motion-canvas/core";
+  Node,
+  NodeProps,
+  Rect,
+  RectProps,
+  Txt,
+  signal,
+} from "@motion-canvas/2d";
+import { SignalValue, SimpleSignal } from "@motion-canvas/core";
 import { colorScheme } from "../../color_scheme";
 
 export interface ArrayElementProps extends RectProps {
@@ -12,11 +16,19 @@ export interface ArrayElementProps extends RectProps {
 export class ArrayElement extends Rect {
   @signal()
   public declare readonly data: SimpleSignal<number, this>;
+  textElement: Txt;
 
   public constructor(props?: ArrayElementProps) {
     super({
       ...props,
     });
+
+    const textElement = (
+      <Txt text={`${this.data()}`} fill={colorScheme[800]}/>
+    ) as Txt;
+
+    // assign the text element as a class attribute
+    this.textElement = textElement;
 
     this.add(
       <Rect
@@ -28,7 +40,7 @@ export class ArrayElement extends Rect {
         justifyContent={"center"}
         alignItems={"center"}
       >
-        <Txt text={`${this.data()}`} fill={colorScheme[800]} />
+        {textElement}
       </Rect>
     );
   }

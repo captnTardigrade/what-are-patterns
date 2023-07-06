@@ -8,6 +8,7 @@ import {
   makeRef,
   range,
   useRandom,
+  waitFor,
 } from "@motion-canvas/core";
 import { ArrayElement } from "../components/ArrayElement";
 
@@ -46,7 +47,9 @@ export default makeScene2D(function* (view) {
         width={width}
         data={data}
         ref={makeRef(arrayVals[layer], index)}
+        opacity={0}
       />;
+      arrayVals[layer][i].textElement.opacity(0);
       index++;
     });
   }
@@ -56,9 +59,7 @@ export default makeScene2D(function* (view) {
   view.add(
     <Layout ref={rootLayerRef} y={-200}>
       {range(numLayers).map((i) => (
-        <Layout width={"100%"} opacity={i == 0 ? 1 : 0}>
-          {...arrayVals[i]}
-        </Layout>
+        <Layout width={"100%"}>{...arrayVals[i]}</Layout>
       ))}
     </Layout>
   );
@@ -87,6 +88,8 @@ export default makeScene2D(function* (view) {
     }
   }
 
+  const lines: Line[][] = range(numLayers).map(() => []);
+
   // connect the layers with lines
   for (let layer = 1; layer < numLayers; layer++) {
     let index = 0;
@@ -99,6 +102,7 @@ export default makeScene2D(function* (view) {
 
       const line = (
         <Line
+          ref={makeRef(lines[layer - 1], 2 * index)}
           lineWidth={4}
           stroke={"black"}
           points={[parentOnePos, val.position().addY(-width / 2)]}
@@ -109,6 +113,7 @@ export default makeScene2D(function* (view) {
 
       const line2 = (
         <Line
+          ref={makeRef(lines[layer - 1], 2 * index + 1)}
           lineWidth={4}
           stroke={"black"}
           points={[parentTwoPos, val.position().addY(-width / 2)]}
@@ -119,4 +124,29 @@ export default makeScene2D(function* (view) {
       index++;
     }
   }
+
+  for (let layer = 1; layer < numLayers; layer++) {
+    // show empty boxes for the second layer
+    yield* all(
+      ...arrayVals[layer].map((val) => {
+        return val.opacity(1, 1);
+      })
+    );
+
+    // show the lines connecting the second layer
+    yield* all(
+      ...lines[layer - 1].map((line) => {
+        return line.opacity(1, 1);
+      })
+    );
+
+    // show the text for the second layer
+    yield* all(
+      ...arrayVals[layer].map((val) => {
+        return val.textElement.opacity(1, 1);
+      })
+    );
+  }
+
+  yield* waitFor(5);
 });
