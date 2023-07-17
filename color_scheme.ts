@@ -13,9 +13,9 @@ export const colorScheme = {
 
   green: "#00b894",
 
-  primary: "#E358C1",
-  background: "#191D25",
-  secondary: "#5794EA",
-  text: "#E7BEE6",
-  accent: "#457E65",
+  primary: "#08d9d6",
+  background: "#252a34",
+  secondary: "#ff2e63",
+  text: "#eaeaea",
+  accent: "#ff5722",
 };

@@ -2,6 +2,7 @@ import { Layout, Line, Rect, makeScene2D } from "@motion-canvas/2d";
 import {
   Vector2,
   all,
+  chain,
   createRef,
   createSignal,
   loop,
@@ -11,21 +12,16 @@ import {
   waitFor,
 } from "@motion-canvas/core";
 import { ArrayElement } from "../components/ArrayElement";
+import { numElements, array } from "../../array";
 
 export default makeScene2D(function* (view) {
-  // For now, numRects is restriced to powers of 2
-  const numElements = 8;
-
-  const random = useRandom();
-  const arr = random.intArray(numElements, 1, 10);
-
   const numLayers = Math.log2(numElements) + 1;
 
   const arrayVals: ArrayElement[][] = range(numLayers).map(() => []);
 
   const width = 120;
 
-  arr.forEach((val, i) => {
+  array.forEach((val, i) => {
     const positionSignal = Vector2.createSignal(0);
     <ArrayElement
       width={width}
@@ -136,7 +132,7 @@ export default makeScene2D(function* (view) {
     // show the lines connecting the second layer
     yield* all(
       ...lines[layer - 1].map((line) => {
-        return line.opacity(1, 1);
+        return chain(line.opacity(1, 1), line.start(1, 1));
       })
     );
 

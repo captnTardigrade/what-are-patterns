@@ -1,0 +1,18 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "Stop Audio",
+      "targetTime": 17.417524850042923
+    },
+    {
+      "name": "Move Audio",
+      "targetTime": 10.202027679829785
+    },
+    {
+      "name": "Text End",
+      "targetTime": 15.557015781104194
+    }
+  ],
+  "seed": 3076250640
+}
