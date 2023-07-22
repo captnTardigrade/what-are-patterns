@@ -57,7 +57,7 @@ export default makeScene2D(function* (view) {
   yield* gmDialogMsgRef().text("That's Deep Blue vs Kasparov Game 1", 2);
   yield* waitFor(3);
   imageRef().src(insanity);
-  yield* gmDialogMsgRef().text("", 0);
+  yield* gmDialogMsgRef().text("", 2);
   yield* gmDialogMsgRef().text("What is this insanity?", 2);
 
   yield* waitFor(4);
