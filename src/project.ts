@@ -11,17 +11,19 @@ import play from "./scenes/play?scene";
 import representation_vs_processing from "./scenes/6_representation_vs_processing?scene";
 import motivation_example from "./scenes/7_motivation_example?scene";
 import formulation from "./scenes/8_formulation?scene";
+import ending from "./scenes/9_ending?scene";
 
 export default makeProject({
   scenes: [
-    // intro,
-    // wiki,
-    // pattern_processing,
-    // langugage,
-    // chess,
-    // representation_vs_processing
-    // motivation_example,
+    intro,
+    wiki,
+    pattern_processing,
+    langugage,
+    chess,
+    representation_vs_processing,
+    motivation_example,
     formulation,
+    ending,
 
     // play,
   ],
