@@ -1,17 +1,12 @@
-import { Grid, Img, Layout, Line, Txt, makeScene2D } from "@motion-canvas/2d";
+import { Txt, makeScene2D } from "@motion-canvas/2d";
 import {
   Direction,
-  Vector2,
   createRef,
   easeInOutQuint,
-  fadeTransition,
-  linear,
   slideTransition,
   waitFor,
 } from "@motion-canvas/core";
 import { colorScheme } from "../../color_scheme";
-
-import brain_vs_computer from "../../assets/brain.svg";
 
 export default makeScene2D(function* (view) {
   view.fill(colorScheme.background);
@@ -42,10 +37,6 @@ export default makeScene2D(function* (view) {
       ref={regularityRef}
     />
   );
-
-  // view.add(
-  //   <Img src={brain_vs_computer} stroke="white" width={100} height={100} />
-  // );
 
   yield* slideTransition(Direction.Bottom);
 

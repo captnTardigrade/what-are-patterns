@@ -18,7 +18,13 @@ import {
 import { createRef, range, useRandom } from "@motion-canvas/core/lib/utils";
 import { colorScheme } from "../../color_scheme";
 import { Table } from "../components/Table";
-import { ThreadGenerator, createSignal, join } from "@motion-canvas/core";
+import {
+  Direction,
+  ThreadGenerator,
+  createSignal,
+  join,
+  slideTransition,
+} from "@motion-canvas/core";
 
 export default makeScene2D(function* (view) {
   view.fill(colorScheme.background);
@@ -244,6 +250,8 @@ export default makeScene2D(function* (view) {
   yield backpropLine().end(0);
 
   yield updateWtsTxt().opacity(0);
+
+  yield* slideTransition(Direction.Bottom);
 
   yield* inputVectorRef().opacity(1, 1);
   yield* inputVectorRef().y(-300, 1);

@@ -1,6 +1,12 @@
 import { Img, Layout, Node, Rect, Txt, makeScene2D } from "@motion-canvas/2d";
 import { colorScheme } from "../../color_scheme";
-import { createRef, easeInOutCubic, waitFor } from "@motion-canvas/core";
+import {
+  Direction,
+  createRef,
+  easeInOutCubic,
+  slideTransition,
+  waitFor,
+} from "@motion-canvas/core";
 
 import kasparov from "../../assets/deep_blue_vs_kasparov_game_1.png";
 import insanity from "../../assets/insane_board_position.png";
@@ -49,6 +55,8 @@ export default makeScene2D(function* (view) {
       </Layout>
     </Layout>
   );
+
+  yield* slideTransition(Direction.Bottom);
 
   yield* gmDialogRef().position.x(500, 2, easeInOutCubic);
   yield* imageRef().opacity(1, 3);

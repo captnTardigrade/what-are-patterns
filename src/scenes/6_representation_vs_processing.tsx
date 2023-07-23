@@ -1,6 +1,12 @@
 import { Img, Layout, Line, Txt, makeScene2D } from "@motion-canvas/2d";
 import { colorScheme } from "../../color_scheme";
-import { Vector2, all, createRef } from "@motion-canvas/core";
+import {
+  Direction,
+  Vector2,
+  all,
+  createRef,
+  slideTransition,
+} from "@motion-canvas/core";
 
 import hear from "../../assets/hear.svg";
 import notes from "../../assets/notes.svg";
@@ -137,7 +143,10 @@ export default makeScene2D(function* (view) {
   yield processImgRef().opacity(0);
   yield computerProcessingRef().end(0);
 
-  yield* dividerLine().start(1).start(0, 1.5);
+  yield dividerLine().start(1);
+  yield* slideTransition(Direction.Top);
+
+  yield* dividerLine().start(0, 1.5);
 
   yield* humanTextRef().opacity(1, 1.5);
   yield* hearImgRef().opacity(1, 1.5);

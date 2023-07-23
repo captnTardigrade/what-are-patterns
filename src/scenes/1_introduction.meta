@@ -1,22 +1,5 @@
 {
   "version": 0,
-  "timeEvents": [
-    {
-      "name": "layer_interval_0",
-      "targetTime": 3.1854116941330073
-    },
-    {
-      "name": "layer_interval_1",
-      "targetTime": 5.140157284718359
-    },
-    {
-      "name": "layer_interval_2",
-      "targetTime": 11.694548549742215
-    },
-    {
-      "name": "layer_interval_3",
-      "targetTime": 12.805257572668928
-    }
-  ],
+  "timeEvents": [],
   "seed": 2200303686
 }

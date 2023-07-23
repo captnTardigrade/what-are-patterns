@@ -67,9 +67,7 @@ export default makeScene2D(function* (view) {
   yield* chain(
     ...splines.map((spline, i) => {
       return chain(
-        spline
-          .end(0)
-          .end(1, useDuration(`layer_interval_${i}`), linear),
+        spline.end(0).end(1, Math.max(i + 1, 4), linear),
         spline.opacity(0.75, 1),
         spline.fill(spline.stroke(), 0.75)
       );

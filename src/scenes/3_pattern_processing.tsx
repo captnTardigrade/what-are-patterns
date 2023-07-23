@@ -12,13 +12,14 @@ import {
 
 import brain from "../../assets/brain-edited.svg";
 import {
+  Direction,
   Vector2,
   all,
   createRef,
-  loop,
-  loopFor,
   makeRef,
   range,
+  slideTransition,
+  useDuration,
   waitFor,
 } from "@motion-canvas/core";
 import { colorScheme } from "../../color_scheme";
@@ -84,7 +85,12 @@ export default makeScene2D(function* (view) {
     );
   });
 
-  for (let i = 0; i < 2; i++) {
+  lines.forEach((line) => line.end(0));
+  patternSignalRef().end(0);
+
+  yield* slideTransition(Direction.Left);
+
+  for (let i = 0; i < 3; i++) {
     lines.forEach((line) => line.end(0));
 
     yield patternSignalRef().end(0).end(1.5, 1.5);
@@ -107,6 +113,4 @@ export default makeScene2D(function* (view) {
     lines.forEach((line) => line.end(0));
     lines.forEach((line) => line.start(0));
   }
-
-  yield* waitFor(3);
 });

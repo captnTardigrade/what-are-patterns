@@ -1,22 +1,21 @@
-import { Gradient, Layout, Rect, Txt, makeScene2D } from "@motion-canvas/2d";
+import { Layout, Rect, Txt, makeScene2D } from "@motion-canvas/2d";
 import { colorScheme } from "../../color_scheme";
 import {
+  Direction,
   ThreadGenerator,
   Vector2,
   all,
   createRef,
   join,
   linear,
-  loop,
-  loopFor,
   loopUntil,
   makeRef,
   range,
   sequence,
+  slideTransition,
   useDuration,
   useRandom,
   waitFor,
-  waitUntil,
 } from "@motion-canvas/core";
 export default makeScene2D(function* (view) {
   view.fill(colorScheme.background);
@@ -37,6 +36,8 @@ export default makeScene2D(function* (view) {
       strokeFirst
     />
   );
+
+  yield* slideTransition(Direction.Top);
 
   yield* characterRef().opacity(1, 1.5);
 

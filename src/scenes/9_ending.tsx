@@ -2,7 +2,12 @@ import { Img, Layout, Txt, makeScene2D } from "@motion-canvas/2d";
 import { colorScheme } from "../../color_scheme";
 
 import chatGpt from "../../assets/chat_gpt.svg";
-import { all, createRef } from "@motion-canvas/core";
+import {
+  Direction,
+  all,
+  createRef,
+  slideTransition,
+} from "@motion-canvas/core";
 
 const textStyle = {
   fill: colorScheme.text,
@@ -46,6 +51,8 @@ export default makeScene2D(function* (view) {
       />
     </Layout>
   );
+
+  yield* slideTransition(Direction.Left);
 
   yield* imgRef().opacity(1, 2);
   yield* imgRef().opacity(0, 2);
