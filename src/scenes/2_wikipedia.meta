@@ -1,5 +1,10 @@
 {
   "version": 0,
-  "timeEvents": [],
+  "timeEvents": [
+    {
+      "name": "regularityHighlight",
+      "targetTime": 11.201574962743312
+    }
+  ],
   "seed": 1189885665
 }

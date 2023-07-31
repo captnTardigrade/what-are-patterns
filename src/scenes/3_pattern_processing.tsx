@@ -61,7 +61,13 @@ export default makeScene2D(function* (view) {
         />
       </Node>
       <Layout ref={brainLayoutRef}>
-        <Img ref={brainImageRef} position={[800, 0]} src={brain} width={400} />
+        <Img
+          ref={brainImageRef}
+          position={[800, 0]}
+          src={brain}
+          width={400}
+          zIndex={-1}
+        />
       </Layout>
     </Layout>
   );
@@ -78,7 +84,7 @@ export default makeScene2D(function* (view) {
         stroke={colorScheme.accent}
         position={[800, 0]}
         points={[
-          Vector2.fromDegrees(i * theta).scale(200),
+          Vector2.fromDegrees(i * theta).scale(175),
           Vector2.fromDegrees(i * theta).scale(300),
         ]}
       />

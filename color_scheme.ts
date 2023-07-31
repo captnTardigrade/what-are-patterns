@@ -19,3 +19,5 @@ export const colorScheme = {
   text: "#eaeaea",
   accent: "#ff5722",
 };
+
+export const transitionDuration = 2;

@@ -2,6 +2,7 @@ import { makeProject } from "@motion-canvas/core";
 
 import "./global.css";
 
+import title from "./scenes/0_title?scene";
 import intro from "./scenes/1_introduction?scene";
 import wiki from "./scenes/2_wikipedia?scene";
 import pattern_processing from "./scenes/3_pattern_processing?scene";
@@ -13,8 +14,12 @@ import motivation_example from "./scenes/7_motivation_example?scene";
 import formulation from "./scenes/8_formulation?scene";
 import ending from "./scenes/9_ending?scene";
 
+import patterns_1 from "../output/patterns_1.mp4";
+
 export default makeProject({
+  audio: patterns_1,
   scenes: [
+    title,
     intro,
     wiki,
     pattern_processing,

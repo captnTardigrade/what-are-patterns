@@ -10,6 +10,7 @@ import {
   Reference,
   SignalValue,
   SimpleSignal,
+  all,
   createRef,
   makeRef,
 } from "@motion-canvas/core";
@@ -23,7 +24,7 @@ export class WordWiseControl extends Node {
   public declare readonly text: SimpleSignal<string, this>;
 
   words: string[];
-  wordsRef: Txt[] = [];
+  public wordsRef: Txt[] = [];
 
   layoutRef: Reference<Layout>;
 
@@ -35,13 +36,24 @@ export class WordWiseControl extends Node {
     this.words = this.text().split(" ");
 
     this.words.forEach((word, i) => (
-      <Txt text={word} fill={props.fill} ref={makeRef(this.wordsRef, i)} />
+      <Txt
+        text={word}
+        fill={props.fill}
+        ref={makeRef(this.wordsRef, i)}
+      />
     ));
 
     this.layoutRef = createRef<Layout>();
 
     this.add(
-      <Layout layout columnGap={20} ref={this.layoutRef}>
+      <Layout
+        layout
+        columnGap={30}
+        ref={this.layoutRef}
+        width={900}
+        wrap={"wrap"}
+        justifyContent={"center"}
+      >
         {...this.wordsRef}
       </Layout>
     );

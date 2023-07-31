@@ -1,15 +1,30 @@
-import { Knot, Spline, makeScene2D } from "@motion-canvas/2d";
+import {
+  Grid,
+  Img,
+  Knot,
+  Layout,
+  Spline,
+  makeScene2D,
+} from "@motion-canvas/2d";
 import {
   Color,
+  Direction,
+  ThreadGenerator,
   Vector2,
   all,
   chain,
+  createRef,
+  join,
   linear,
   makeRef,
   range,
+  slideTransition,
   useDuration,
+  waitFor,
 } from "@motion-canvas/core";
-import { colorScheme } from "../../color_scheme";
+import { colorScheme, transitionDuration } from "../../color_scheme";
+
+import tiles from "../../assets/moroccon_tiles.jpg";
 
 export default makeScene2D(function* (view) {
   view.fill(colorScheme.background);
@@ -18,19 +33,20 @@ export default makeScene2D(function* (view) {
 
   const splines: Spline[] = [];
 
+  const layoutRef = createRef<Layout>();
+
+  view.add(<Layout ref={layoutRef}></Layout>);
+
   const initialPetals = 6;
   let numPetals = initialPetals;
   range(numLayers).forEach((layer) => {
     const theta = 360 / numPetals;
-    view.add(
+    layoutRef().add(
       <Spline
         ref={makeRef(splines, layer)}
         lineWidth={4}
-        stroke={Color.lerp(
-          colorScheme.primary,
-          colorScheme.accent,
-          layer / numLayers
-        )}
+        fill={Color.lerp(colorScheme[300], colorScheme[900], layer / numLayers)}
+        opacity={0}
         closed
       >
         <Knot position={[0, 0]} />
@@ -62,23 +78,40 @@ export default makeScene2D(function* (view) {
     numPetals += 2;
   });
 
+  yield* slideTransition(Direction.Bottom, transitionDuration);
+
   yield* splines.map((spline, i) => spline.zIndex(-(i + 1), 0));
 
   yield* chain(
-    ...splines.map((spline, i) => {
-      return chain(
-        spline.end(0).end(1, Math.max(i + 1, 4), linear),
-        spline.opacity(0.75, 1),
-        spline.fill(spline.stroke(), 0.75)
-      );
-    })
+    ...splines.map((spline, i) => spline.opacity(0.8, 0.7 / (i + 1)))
   );
 
-  const interval = 5;
-
-  yield* all(
+  const interval = useDuration("petalInterval");
+  const rotatingPetals: ThreadGenerator = yield all(
     ...splines.map((spline, i) =>
-      spline.rotation(360 * Math.pow(-1, i), splines.length * interval, linear)
+      spline.rotation(180 * Math.pow(-1, i), splines.length * interval, linear)
     )
   );
+
+  yield* waitFor(useDuration("toArchitecture"));
+  yield* all(
+    layoutRef().position([-500, 0], 0.75),
+    layoutRef().scale(0.75, 0.75)
+  );
+
+  // architecture
+  const imgRef = createRef<Img>();
+  view.add(
+    <Img
+      ref={imgRef}
+      src={tiles}
+      opacity={0}
+      scale={0.65}
+      position={[450, 0]}
+    />
+  );
+
+  yield* imgRef().opacity(1, 1);
+
+  yield* join(rotatingPetals);
 });

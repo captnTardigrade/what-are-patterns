@@ -2,23 +2,23 @@ lockfileVersion: 5.4
 
 specifiers:
   '@hhenrichsen/motion-canvas-nord': ^1.1.1
-  '@motion-canvas/2d': ^3.9.0
-  '@motion-canvas/core': ^3.9.0
+  '@motion-canvas/2d': ^3.10.0
+  '@motion-canvas/core': ^3.10.0
   '@motion-canvas/ffmpeg': ^1.1.0
-  '@motion-canvas/ui': ^3.9.0
-  '@motion-canvas/vite-plugin': ^3.9.0
+  '@motion-canvas/ui': ^3.10.0
+  '@motion-canvas/vite-plugin': ^3.10.0
   typescript: ^4.9.5
   vite: ^4.1.4
 
 dependencies:
-  '@hhenrichsen/motion-canvas-nord': 1.1.1_bfouamrpzfir3orvprvlszyk6i
-  '@motion-canvas/2d': 3.9.0_vite@4.4.2
-  '@motion-canvas/core': 3.9.0_vite@4.4.2
-  '@motion-canvas/ffmpeg': 1.1.1_lyuskq7sgim5wkswqvb5tcuabq
+  '@hhenrichsen/motion-canvas-nord': 1.1.1_7nrabynl2lj3pubzhxt3e5dhq4
+  '@motion-canvas/2d': 3.10.0_vite@4.4.2
+  '@motion-canvas/core': 3.10.0_vite@4.4.2
+  '@motion-canvas/ffmpeg': 1.1.1_jkkw2ih37csqqsrqdpo7iju6vq
 
 devDependencies:
-  '@motion-canvas/ui': 3.9.0_vite@4.4.2
-  '@motion-canvas/vite-plugin': 3.9.0_vite@4.4.2
+  '@motion-canvas/ui': 3.10.0_vite@4.4.2
+  '@motion-canvas/vite-plugin': 3.10.0_vite@4.4.2
   typescript: 4.9.5
   vite: 4.4.2
 
@@ -355,16 +355,16 @@ packages:
     dev: false
     optional: true
 
-  /@hhenrichsen/motion-canvas-nord/1.1.1_bfouamrpzfir3orvprvlszyk6i:
+  /@hhenrichsen/motion-canvas-nord/1.1.1_7nrabynl2lj3pubzhxt3e5dhq4:
     resolution: {integrity: sha512-8JYrViXzgcmjag7tEr7B94nVObPrg2vvIBUySpSnz5Z4vTaVm9spaKClJegbXTAcWc5u0v7pePbeLmOUENrgfg==}
     peerDependencies:
       '@motion-canvas/core': ^3.9.0
       code-fns: ^0.8.2
     dependencies:
-      '@motion-canvas/2d': 3.9.0_vite@4.4.2
-      '@motion-canvas/core': 3.9.0_vite@4.4.2
-      '@motion-canvas/ui': 3.9.0_vite@4.4.2
-      '@motion-canvas/vite-plugin': 3.9.0_vite@4.4.2
+      '@motion-canvas/2d': 3.10.0_vite@4.4.2
+      '@motion-canvas/core': 3.10.0_vite@4.4.2
+      '@motion-canvas/ui': 3.10.0_vite@4.4.2
+      '@motion-canvas/vite-plugin': 3.10.0_vite@4.4.2
       code-fns: 0.8.2
       vite: 4.4.2
     transitivePeerDependencies:
@@ -378,18 +378,19 @@ packages:
       - terser
     dev: false
 
-  /@motion-canvas/2d/3.9.0_vite@4.4.2:
-    resolution: {integrity: sha512-7Sqie5TsLCWh0hAKUM6JAp7Ysu3qbFEAvzrb2BE1t6qy1CIGuik2VrUEShBLlX9zokPeEkQi3q0O+fOc9t7Wdw==}
+  /@motion-canvas/2d/3.10.0_vite@4.4.2:
+    resolution: {integrity: sha512-iYIehXnFR5A7Jt1qiDkMBqBoc+wTEP62tTDBwt1tAFkcfABWBwbIuapL3BfbmnKkNYESCVyOmU7wKYP5YZj++A==}
     dependencies:
-      '@motion-canvas/core': 3.9.0_vite@4.4.2
+      '@motion-canvas/core': 3.10.0_vite@4.4.2
       code-fns: 0.8.2
       mathjax-full: 3.2.2
+      parse-svg-path: 0.1.2
     transitivePeerDependencies:
       - vite
     dev: false
 
-  /@motion-canvas/core/3.9.0_vite@4.4.2:
-    resolution: {integrity: sha512-oPnXU9MB7MMpC40TZW8+pY22m4dWgXDW1qxbYxwRVy/SvR2rvNFuXkC+EPbRJ2fZ5tbEi8vWsN8WhuiSuF+9pw==}
+  /@motion-canvas/core/3.10.0_vite@4.4.2:
+    resolution: {integrity: sha512-fyyX73tZ+0I8bS0E1alWg8+CEoh3E/YxT2M/KxWzHpqlrfo6D7Ktec2xserBSCaLWOqWiNoKTBcMxVe/wHHNOQ==}
     peerDependencies:
       vite: ^4.1.4
     dependencies:
@@ -397,7 +398,7 @@ packages:
       chroma-js: 2.4.2
       vite: 4.4.2
 
-  /@motion-canvas/ffmpeg/1.1.1_lyuskq7sgim5wkswqvb5tcuabq:
+  /@motion-canvas/ffmpeg/1.1.1_jkkw2ih37csqqsrqdpo7iju6vq:
     resolution: {integrity: sha512-w2d7oFfR3hYHXeYtFGoHp6goY+vVL0LoZ2h1b/veTH5KvE7jrLp2Kl/XPHsYJ5ZDRHUT0Nhl05DBLdXYqdSqgg==}
     peerDependencies:
       '@motion-canvas/core': ^3.7.0
@@ -406,21 +407,21 @@ packages:
     dependencies:
       '@ffmpeg-installer/ffmpeg': 1.1.0
       '@ffprobe-installer/ffprobe': 2.1.0
-      '@motion-canvas/core': 3.9.0_vite@4.4.2
-      '@motion-canvas/vite-plugin': 3.9.0_vite@4.4.2
+      '@motion-canvas/core': 3.10.0_vite@4.4.2
+      '@motion-canvas/vite-plugin': 3.10.0_vite@4.4.2
       fluent-ffmpeg: 2.1.2
       vite: 4.4.2
     dev: false
 
-  /@motion-canvas/ui/3.9.0_vite@4.4.2:
-    resolution: {integrity: sha512-pOnuNQn71vZ9yG/+xeqeJ+A+3MMXLpU8RsEWWRkn3iL9yiOIqtRTzG+gpyuy3cbOWkmW926rg0BIodUrV/l/Lg==}
+  /@motion-canvas/ui/3.10.0_vite@4.4.2:
+    resolution: {integrity: sha512-WK1gS3ZTPYvLvfU7poCn8flC3L55ZfA9eZOWU3lJPANBvJlw3nAQ0SiMSdVK21ELJIo3BgeNvpRw5UW4jhbQGQ==}
     dependencies:
-      '@motion-canvas/core': 3.9.0_vite@4.4.2
+      '@motion-canvas/core': 3.10.0_vite@4.4.2
     transitivePeerDependencies:
       - vite
 
-  /@motion-canvas/vite-plugin/3.9.0_vite@4.4.2:
-    resolution: {integrity: sha512-mPigErr85aHltlLsyR6qnaVkjI3Vdn/qgyziqj5t79oQjxRl7aTGgJlSxE8SxwxffwVxh1U0HEwg/vtqo75Yag==}
+  /@motion-canvas/vite-plugin/3.10.0_vite@4.4.2:
+    resolution: {integrity: sha512-Qvw+skepD+FsfScNBl6UXLslUrY9D0j6A8+mYyrS4AmiiPx/RGXW29cASYaOD7zivntOCvlAD0LBsOCHf1l8uA==}
     peerDependencies:
       vite: 4.x
     dependencies:
@@ -567,6 +568,10 @@ packages:
     resolution: {integrity: sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+
+  /parse-svg-path/0.1.2:
+    resolution: {integrity: sha512-JyPSBnkTJ0AI8GGJLfMXvKq42cj5c006fnLz6fXy6zfoVjJizi8BNTpu8on8ziI1cKy9d9DGNuY17Ce7wuejpQ==}
+    dev: false
 
   /picocolors/1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
