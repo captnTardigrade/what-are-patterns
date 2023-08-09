@@ -1,4 +1,4 @@
-import { Img, Layout, Txt, makeScene2D } from "@motion-canvas/2d";
+import { Img, Layout, Line, Txt, makeScene2D } from "@motion-canvas/2d";
 import { colorScheme } from "../../color_scheme";
 
 import chatGpt from "../../assets/chat_gpt.svg";
@@ -7,6 +7,8 @@ import {
   all,
   createRef,
   slideTransition,
+  useDuration,
+  waitFor,
 } from "@motion-canvas/core";
 
 const textStyle = {
@@ -55,7 +57,89 @@ export default makeScene2D(function* (view) {
   yield* slideTransition(Direction.Left);
 
   yield* imgRef().opacity(1, 2);
-  yield* imgRef().opacity(0, 2);
+
+  yield* all(imgRef().scale(0.5, 2), imgRef().position([-200, 0], 2));
+
+  const inputTextRef = createRef<Txt>();
+  view.add(
+    <Txt
+      text={"The dog is"}
+      ref={inputTextRef}
+      position={imgRef().top().addY(-300)}
+      fill={colorScheme.text}
+      opacity={0}
+      textAlign={"center"}
+    />
+  );
+
+  const inputLineRef = createRef<Line>();
+  view.add(
+    <Line
+      points={[inputTextRef().middle().addY(30), imgRef().top().addY(-10)]}
+      stroke={colorScheme.text}
+      lineWidth={5}
+      endArrow
+      ref={inputLineRef}
+    />
+  );
+
+  const outputTextRef = createRef<Txt>();
+  view.add(
+    <Txt
+      text={"dancing"}
+      ref={outputTextRef}
+      position={imgRef().right().addX(400)}
+      fill={colorScheme.text}
+      opacity={0}
+    />
+  );
+
+  const outputLineRef = createRef<Line>();
+  view.add(
+    <Line
+      points={[imgRef().right().addX(10), outputTextRef().left().addX(-60)]}
+      stroke={colorScheme.text}
+      lineWidth={5}
+      endArrow
+      ref={outputLineRef}
+    />
+  );
+
+  yield inputLineRef().end(0);
+  yield outputLineRef().end(0);
+
+  yield* inputTextRef().opacity(1, 1);
+
+  yield* inputLineRef().end(1, 1);
+
+  yield* outputLineRef().end(1, 1);
+
+  yield* outputTextRef().opacity(1, 1);
+
+  yield* inputTextRef().text("The dog is dancing", 1);
+
+  yield* outputTextRef().text("because", 1);
+
+  yield* inputTextRef().text("The dog is dancing because", 1);
+
+  yield* outputTextRef().text("it", 1);
+
+  yield* inputTextRef().text("The dog is dancing because it", 1);
+
+  yield* outputTextRef().text("was", 1);
+
+  yield* inputTextRef().text("The dog is dancing because it was", 1);
+
+  yield* outputTextRef().text("raining", 1);
+
+  yield inputLineRef().end(0);
+  yield outputLineRef().end(0);
+  yield inputTextRef().opacity(0);
+  yield outputTextRef().opacity(0);
+
+  yield* imgRef().opacity(0, useDuration("clear-gpt"));
 
   yield* all(ackRef().opacity(1, 1), layoutRef().opacity(1, 1));
+
+  yield* waitFor(useDuration("end"));
 });

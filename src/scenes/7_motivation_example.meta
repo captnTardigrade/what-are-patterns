@@ -1,5 +1,18 @@
 {
   "version": 0,
-  "timeEvents": [],
+  "timeEvents": [
+    {
+      "name": "first-sentence",
+      "targetTime": 7.601630929727141
+    },
+    {
+      "name": "horse-sentence",
+      "targetTime": 24.03959736101828
+    },
+    {
+      "name": "end-example",
+      "targetTime": 45.12830291702993
+    }
+  ],
   "seed": 1297377017
 }

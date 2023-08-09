@@ -1,5 +1,14 @@
 {
   "version": 0,
-  "timeEvents": [],
+  "timeEvents": [
+    {
+      "name": "clear-gpt",
+      "targetTime": 31.307017767185933
+    },
+    {
+      "name": "end",
+      "targetTime": 255.27053298452583
+    }
+  ],
   "seed": 424687528
 }

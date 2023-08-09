@@ -1,5 +1,10 @@
 {
   "version": 0,
-  "timeEvents": [],
+  "timeEvents": [
+    {
+      "name": "end-pattern-processing",
+      "targetTime": 21.027086187618007
+    }
+  ],
   "seed": 3401971837
 }

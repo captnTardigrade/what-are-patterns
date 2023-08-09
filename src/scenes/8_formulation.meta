@@ -2,8 +2,12 @@
   "version": 0,
   "timeEvents": [
     {
-      "name": "End Input",
-      "targetTime": 31.596184983488524
+      "name": "input-vector",
+      "targetTime": 6.052975780797686
+    },
+    {
+      "name": "function",
+      "targetTime": 26.43444425226653
     }
   ],
   "seed": 31831807

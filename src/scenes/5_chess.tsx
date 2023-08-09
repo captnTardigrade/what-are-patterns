@@ -1,15 +1,19 @@
 import { Img, Layout, Node, Rect, Txt, makeScene2D } from "@motion-canvas/2d";
-import { colorScheme } from "../../color_scheme";
+import { colorScheme, transitionDuration } from "../../color_scheme";
 import {
   Direction,
+  all,
   createRef,
   easeInOutCubic,
   slideTransition,
+  useDuration,
   waitFor,
 } from "@motion-canvas/core";
 
 import kasparov from "../../assets/deep_blue_vs_kasparov_game_1.png";
 import insanity from "../../assets/insane_board_position.png";
+import rules from "../../assets/chess_rules.png";
+import the_chaos from "../../assets/the_chaos_poem.png";
 
 export default makeScene2D(function* (view) {
   view.fill(colorScheme.background);
@@ -56,10 +60,25 @@ export default makeScene2D(function* (view) {
     </Layout>
   );
 
-  yield* slideTransition(Direction.Bottom);
+  const srcRef = createRef<Txt>();
+  view.add(
+    <Txt
+      ref={srcRef}
+      text={"Moonwalking with Einstein, Joshua Foer"}
+      fill={colorScheme.text}
+      fontSize={30}
+      position={[650, 478]}
+      fontStyle={"italic"}
+      opacity={0}
+    />
+  );
+
+  yield* slideTransition(Direction.Bottom, transitionDuration);
 
   yield* gmDialogRef().position.x(500, 2, easeInOutCubic);
   yield* imageRef().opacity(1, 3);
+
+  yield* srcRef().opacity(1, useDuration("src"));
   yield* gmDialogMsgRef().opacity(1, 2);
 
   yield* gmDialogMsgRef().text("That's Deep Blue vs Kasparov Game 1", 2);
@@ -68,5 +87,46 @@ export default makeScene2D(function* (view) {
   yield* gmDialogMsgRef().text("", 2);
   yield* gmDialogMsgRef().text("What is this insanity?", 2);
 
-  yield* waitFor(4);
+  yield* waitFor(useDuration("chess-rules"));
+
+  yield* gmDialogMsgRef().text("", 3);
+
+  imageRef().src(rules);
+  yield* gmDialogMsgRef().text(
+    "The white rook is in-line with the black king",
+    2
+  );
+
+  yield* all(gmDialogRef().opacity(0, 2), srcRef().opacity(0, 2));
+
+  gmDialogRef().remove();
+  srcRef().remove();
+
+  yield* imageRef().opacity(0, 2);
+
+  imageRef().src(the_chaos);
+
+  yield* imageRef().opacity(1, 1.5);
+
+  view.add(
+    <Txt
+      text={"The Chaos - Gerard Nolst Trenité"}
+      fill={colorScheme.text}
+      fontSize={50}
+      position={[400, -230]}
+      width={500}
+    />
+  );
+  
+  view.add(
+    <Txt
+      text={"Yeah... English is definitely a troll language"}
+      position={[500, -150]}
+      fontSize={35}
+      fill={colorScheme.text}
+      fontStyle={"italic"}
+    />
+  );
+
+  yield* waitFor(useDuration("the-chaos"));
 });

@@ -96,7 +96,7 @@ export default makeScene2D(function* (view) {
 
   yield* slideTransition(Direction.Left);
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 4; i++) {
     lines.forEach((line) => line.end(0));
 
     yield patternSignalRef().end(0).end(1.5, 1.5);
@@ -119,4 +119,6 @@ export default makeScene2D(function* (view) {
     lines.forEach((line) => line.end(0));
     lines.forEach((line) => line.start(0));
   }
+
+  yield* waitFor(useDuration("end-pattern-processing"));
 });

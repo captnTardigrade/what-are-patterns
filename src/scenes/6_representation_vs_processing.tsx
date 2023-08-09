@@ -6,6 +6,8 @@ import {
   all,
   createRef,
   slideTransition,
+  useDuration,
+  waitFor,
 } from "@motion-canvas/core";
 
 import hear from "../../assets/hear.svg";
@@ -148,6 +150,8 @@ export default makeScene2D(function* (view) {
 
   yield* dividerLine().start(0, 1.5);
 
+  yield* waitFor(useDuration("show-human-repr"))
+
   yield* humanTextRef().opacity(1, 1.5);
   yield* hearImgRef().opacity(1, 1.5);
   yield* humanProcessingRef().end(1, 1.5);
@@ -157,4 +161,6 @@ export default makeScene2D(function* (view) {
   yield* knowledgeImgRef().opacity(1, 1.5);
   yield* computerProcessingRef().end(1, 1.5);
   yield* processImgRef().opacity(1, 1.5);
+
+  yield* waitFor(useDuration("end-repr"))
 });

@@ -12,9 +12,12 @@ import play from "./scenes/play?scene";
 import representation_vs_processing from "./scenes/6_representation_vs_processing?scene";
 import motivation_example from "./scenes/7_motivation_example?scene";
 import formulation from "./scenes/8_formulation?scene";
+import nn from "./scenes/8_1_neural_networks?scene";
+import word2vec from "./scenes/8_2_word_2_vec?scene";
+import embeddings from "./scenes/8_3_nn?scene";
 import ending from "./scenes/9_ending?scene";
 
-import patterns_1 from "../output/patterns_1.mp4";
+import patterns_1 from "../assets/audio/patterns_audio.mp4";
 
 export default makeProject({
   audio: patterns_1,
@@ -28,6 +31,9 @@ export default makeProject({
     representation_vs_processing,
     motivation_example,
     formulation,
+    nn,
+    word2vec,
+    embeddings,
     ending,
 
     // play,

@@ -15,7 +15,12 @@ import {
   loopUntil,
   waitFor,
 } from "@motion-canvas/core/lib/flow";
-import { createRef, range, useRandom } from "@motion-canvas/core/lib/utils";
+import {
+  createRef,
+  range,
+  useDuration,
+  useRandom,
+} from "@motion-canvas/core/lib/utils";
 import { colorScheme } from "../../color_scheme";
 import { Table } from "../components/Table";
 import {
@@ -54,7 +59,7 @@ export default makeScene2D(function* (view) {
   view.add(
     <Latex
       ref={functionRef}
-      tex="{\color{white} f(\overrightarrow{w}) \rightarrow P_{dancing}}"
+      tex="{\color{white} f(\overrightarrow{w}) \rightarrow P}"
       width={500}
       height={200}
     />
@@ -129,7 +134,7 @@ export default makeScene2D(function* (view) {
   view.add(
     <Latex
       ref={functionEmbeddedRef}
-      tex="{\color{white} f(\overrightarrow{w}_{emb}) \rightarrow P_{dancing}}"
+      tex="{\color{white} f(\overrightarrow{w}_{emb}) \rightarrow P}"
       position={() => functionRef().right().addX(350)}
       width={500}
     />
@@ -254,60 +259,64 @@ export default makeScene2D(function* (view) {
   yield* slideTransition(Direction.Bottom);
 
   yield* inputVectorRef().opacity(1, 1);
+  yield* waitFor(useDuration("input-vector"));
+
   yield* inputVectorRef().y(-300, 1);
   yield* functionRef().opacity(1, 1);
 
-  yield* all(inputVectorRef().x(-600, 1), functionRef().x(-600, 1));
+  yield* waitFor(useDuration("function"));
 
-  // mapping animation
-  yield* all(
-    mappingVectorRef().opacity(1, 1),
-    functionMappedRef().opacity(1, 1)
-  );
+  // yield* all(inputVectorRef().x(-600, 1), functionRef().x(-600, 1));
 
-  yield* all(
-    mappingVectorRef().opacity(0, 1),
-    functionMappedRef().opacity(0, 1)
-  );
+  // // mapping animation
+  // yield* all(
+  //   mappingVectorRef().opacity(1, 1),
+  //   functionMappedRef().opacity(1, 1)
+  // );
 
-  yield* all(inputVectorRef().y(-400, 1), functionRef().y(-200, 1));
+  // yield* all(
+  //   mappingVectorRef().opacity(0, 1),
+  //   functionMappedRef().opacity(0, 1)
+  // );
 
-  yield* all(inputVectorRef().scale(0.75, 1), functionRef().scale(0.75, 1));
+  // yield* all(inputVectorRef().y(-400, 1), functionRef().y(-200, 1));
 
-  yield* all(inputVectorRef().x(-700, 1), functionRef().x(-700, 1));
+  // yield* all(inputVectorRef().scale(0.75, 1), functionRef().scale(0.75, 1));
 
-  yield* embeddingTableRef().opacity(1, 1);
-  yield* labelRef().opacity(1, 1);
+  // yield* all(inputVectorRef().x(-700, 1), functionRef().x(-700, 1));
 
-  yield* all(
-    embedInputVectorRef().opacity(1, 1),
-    functionEmbeddedRef().opacity(1, 1)
-  );
+  // yield* embeddingTableRef().opacity(1, 1);
+  // yield* labelRef().opacity(1, 1);
 
-  yield* nnLayoutRef().opacity(1, 1);
-  const inputLoop: ThreadGenerator = yield loopUntil("End Input", () =>
-    chain(
-      updateWtsTxt().opacity(0, 1),
-      inputLine().end(1, 1),
-      inputLine().start(1, 1),
-      inputLine().start(0, 0),
-      inputLine().end(0, 0),
+  // yield* all(
+  //   embedInputVectorRef().opacity(1, 1),
+  //   functionEmbeddedRef().opacity(1, 1)
+  // );
 
-      outputLine().end(1, 1),
-      outputLine().start(1, 1),
-      outputLine().start(0, 0),
-      outputLine().end(0, 0),
+  // yield* nnLayoutRef().opacity(1, 1);
+  // const inputLoop: ThreadGenerator = yield loopUntil("End Input", () =>
+  //   chain(
+  //     updateWtsTxt().opacity(0, 1),
+  //     inputLine().end(1, 1),
+  //     inputLine().start(1, 1),
+  //     inputLine().start(0, 0),
+  //     inputLine().end(0, 0),
 
-      updateWtsTxt().opacity(1, 1),
+  //     outputLine().end(1, 1),
+  //     outputLine().start(1, 1),
+  //     outputLine().start(0, 0),
+  //     outputLine().end(0, 0),
 
-      backpropLine().end(1, 1),
-      backpropLine().start(1, 1),
-      backpropLine().start(0, 0),
-      backpropLine().end(0, 0),
+  //     updateWtsTxt().opacity(1, 1),
 
-      embeddings(genRandomNumbers(), 0)
-    )
-  );
+  //     backpropLine().end(1, 1),
+  //     backpropLine().start(1, 1),
+  //     backpropLine().start(0, 0),
+  //     backpropLine().end(0, 0),
 
-  yield* join(inputLoop);
+  //     embeddings(genRandomNumbers(), 0)
+  //   )
+  // );
+
+  // yield* join(inputLoop);
 });

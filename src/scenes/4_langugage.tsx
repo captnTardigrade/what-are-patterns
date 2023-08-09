@@ -38,7 +38,6 @@ export default makeScene2D(function* (view) {
   );
 
   yield* slideTransition(Direction.Top);
-
   yield* characterRef().opacity(1, 1.5);
 
   yield* characterRef()
@@ -47,7 +46,7 @@ export default makeScene2D(function* (view) {
 
   yield* characterRef().position(Vector2.fromDegrees(-90).scale(300), 1.5);
 
-  yield* waitFor(1);
+  yield* waitFor(useDuration("audio-start"));
 
   // audio signal
   const audioSignalRef = createRef<Layout>();
@@ -98,6 +97,8 @@ export default makeScene2D(function* (view) {
     />
   );
 
+  yield* waitFor(useDuration("text-start"));
+
   yield* teluguTextRef().text(
     "తినగా తినగా వేపాకు తియ్యగుండు",
     useDuration("Text End"),
@@ -105,5 +106,5 @@ export default makeScene2D(function* (view) {
   );
 
   yield* join(audioAnimation);
-  yield* waitFor(3);
+  yield* waitFor(useDuration("selective-patterns"));
 });

@@ -1,5 +1,14 @@
 {
   "version": 0,
-  "timeEvents": [],
+  "timeEvents": [
+    {
+      "name": "show-human-repr",
+      "targetTime": 10.720815436164889
+    },
+    {
+      "name": "end-repr",
+      "targetTime": 32.32336506982614
+    }
+  ],
   "seed": 717201764
 }

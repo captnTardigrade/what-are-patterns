@@ -3,15 +3,27 @@
   "timeEvents": [
     {
       "name": "Stop Audio",
-      "targetTime": 17.417524850042923
+      "targetTime": 63.17490228169644
+    },
+    {
+      "name": "audio-start",
+      "targetTime": 10.410432082813903
     },
     {
       "name": "Move Audio",
-      "targetTime": 12.383948268674745
+      "targetTime": 20.5143622028126
+    },
+    {
+      "name": "text-start",
+      "targetTime": 32.36802675268571
     },
     {
       "name": "Text End",
-      "targetTime": 17.738936369949155
+      "targetTime": 38.95383204181958
+    },
+    {
+      "name": "selective-patterns",
+      "targetTime": 63.274802961557384
     }
   ],
   "seed": 3076250640

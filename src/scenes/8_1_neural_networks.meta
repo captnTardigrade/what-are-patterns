@@ -1,0 +1,14 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "end-neural-networks",
+      "targetTime": 17.981639749302417
+    },
+    {
+      "name": "first-sentence",
+      "targetTime": 246.98520127941504
+    }
+  ],
+  "seed": 145663163
+}

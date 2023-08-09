@@ -5,6 +5,7 @@ import {
   all,
   createRef,
   slideTransition,
+  useDuration,
   waitFor,
 } from "@motion-canvas/core";
 import { WordWiseControl } from "../components/WordWiseControl";
@@ -44,11 +45,15 @@ export default makeScene2D(function* (view) {
   yield horseTxtRef().opacity(0);
   yield* slideTransition(Direction.Right);
 
+  yield* waitFor(useDuration("first-sentence"))
+
   yield* dogTxtRef().opacity(1, 1);
   yield* dogTxtRef().y(-100, 1);
   yield* catTxtRef().opacity(1, 1);
 
   yield* all(dogTxtRef().y(-200, 1), catTxtRef().y(-100, 1));
+
+  yield* waitFor(useDuration("horse-sentence"))
 
   yield* horseTxtRef().opacity(1, 1);
 
@@ -78,5 +83,5 @@ export default makeScene2D(function* (view) {
 
   yield* horseTxtRef().getWord(5).text("hat", 0.5);
 
-  yield* waitFor(2);
+  yield* waitFor(useDuration("end-example"));
 });
