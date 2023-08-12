@@ -97,36 +97,42 @@ export default makeScene2D(function* (view) {
     2
   );
 
-  yield* all(gmDialogRef().opacity(0, 2), srcRef().opacity(0, 2));
+  yield* waitFor(useDuration("chess-rules-end"));
+
+  yield* all(
+    gmDialogRef().opacity(0, 2),
+    srcRef().opacity(0, 2),
+    imageRef().opacity(0, 2)
+  );
 
   gmDialogRef().remove();
   srcRef().remove();
-
-  yield* imageRef().opacity(0, 2);
 
   imageRef().src(the_chaos);
 
   yield* imageRef().opacity(1, 1.5);
 
+  const txtRefLayout = createRef<Layout>();
   view.add(
-    <Txt
-      text={"The Chaos - Gerard Nolst Trenité"}
-      fill={colorScheme.text}
-      fontSize={50}
-      position={[400, -230]}
-      width={500}
-    />
+    <Layout ref={txtRefLayout} opacity={0}>
+      <Txt
+        text={"The Chaos - Gerard Nolst Trenité"}
+        fill={colorScheme.text}
+        fontSize={50}
+        position={[400, -230]}
+        width={500}
+      />
+      <Txt
+        text={"Yeah... English is definitely a troll language"}
+        position={[500, -150]}
+        fontSize={35}
+        fill={colorScheme.text}
+        fontStyle={"italic"}
+      />
+    </Layout>
   );
-  
-  view.add(
-    <Txt
-      text={"Yeah... English is definitely a troll language"}
-      position={[500, -150]}
-      fontSize={35}
-      fill={colorScheme.text}
-      fontStyle={"italic"}
-    />
-  );
+
+  yield* txtRefLayout().opacity(1, 1.5);
 
   yield* waitFor(useDuration("the-chaos"));
 });

@@ -15,5 +15,7 @@ dist
 *.sw?
 
 *.mp3
+*.mp4
 
 src/scenes/transformers
+

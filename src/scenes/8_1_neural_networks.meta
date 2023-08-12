@@ -3,11 +3,43 @@
   "timeEvents": [
     {
       "name": "end-neural-networks",
-      "targetTime": 17.981639749302417
+      "targetTime": 15.10700185691707
     },
     {
-      "name": "first-sentence",
-      "targetTime": 246.98520127941504
+      "name": "sample-sentences",
+      "targetTime": 20.91129961908524
+    },
+    {
+      "name": "cat-cue",
+      "targetTime": 29.637731707289536
+    },
+    {
+      "name": "end-sample-sentences",
+      "targetTime": 38.188078937853284
+    },
+    {
+      "name": "end-output-word",
+      "targetTime": 45.715099606454416
+    },
+    {
+      "name": "output-vector-encoding",
+      "targetTime": 57.16735926604865
+    },
+    {
+      "name": "wait-for-1",
+      "targetTime": 114.34980019340989
+    },
+    {
+      "name": "end-nn-loop",
+      "targetTime": 170.4363761984497
+    },
+    {
+      "name": "end-nn-knobs",
+      "targetTime": 130.0096117237883
+    },
+    {
+      "name": "end-input-words",
+      "targetTime": 146.01092978954807
     }
   ],
   "seed": 145663163

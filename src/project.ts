@@ -17,10 +17,10 @@ import word2vec from "./scenes/8_2_word_2_vec?scene";
 import embeddings from "./scenes/8_3_nn?scene";
 import ending from "./scenes/9_ending?scene";
 
-import patterns_1 from "../assets/audio/patterns_audio.mp4";
+import audio from "../assets/audio/audio.mp4";
 
 export default makeProject({
-  audio: patterns_1,
+  audio: audio,
   scenes: [
     title,
     intro,

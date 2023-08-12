@@ -17,7 +17,7 @@ export default makeScene2D(function* (view) {
   view.add(
     <WordWiseControl
       ref={dogTxtRef}
-      text={"A dog is wearing a shirt"}
+      text={"A dog wears a shirt"}
       fill={colorScheme.text}
     />
   );
@@ -26,7 +26,7 @@ export default makeScene2D(function* (view) {
   view.add(
     <WordWiseControl
       ref={catTxtRef}
-      text={"The cat is wears a tie"}
+      text={"The cat is wearing a tie"}
       fill={colorScheme.text}
     />
   );
@@ -70,13 +70,13 @@ export default makeScene2D(function* (view) {
   );
 
   yield* all(
-    dogTxtRef().getWord(3).fill(colorScheme.primary, 1),
+    dogTxtRef().getWord(2).fill(colorScheme.primary, 1),
     catTxtRef().getWord(3).fill(colorScheme.primary, 1),
     horseTxtRef().getWord(3).fill(colorScheme.primary, 1)
   );
 
   yield* all(
-    dogTxtRef().getWord(5).fill(colorScheme.secondary, 1),
+    dogTxtRef().getWord(4).fill(colorScheme.secondary, 1),
     catTxtRef().getWord(5).fill(colorScheme.secondary, 1),
     horseTxtRef().getWord(5).fill(colorScheme.secondary, 1)
   );

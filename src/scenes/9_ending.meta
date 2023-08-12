@@ -2,12 +2,28 @@
   "version": 0,
   "timeEvents": [
     {
+      "name": "show-gpt",
+      "targetTime": 26.64251366745688
+    },
+    {
+      "name": "gpt-input",
+      "targetTime": 34.89576034618843
+    },
+    {
+      "name": "gpt-output",
+      "targetTime": 39.2833920970068
+    },
+    {
       "name": "clear-gpt",
-      "targetTime": 31.307017767185933
+      "targetTime": 54.142390288681085
+    },
+    {
+      "name": "ack",
+      "targetTime": 57.18114453956883
     },
     {
       "name": "end",
-      "targetTime": 255.27053298452583
+      "targetTime": 65.75713311406665
     }
   ],
   "seed": 424687528

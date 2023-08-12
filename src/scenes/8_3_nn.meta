@@ -7,11 +7,19 @@
     },
     {
       "name": "function",
-      "targetTime": 3.6
+      "targetTime": 3.0285671979717663
+    },
+    {
+      "name": "embedding-table",
+      "targetTime": 4.028567197971766
+    },
+    {
+      "name": "nn",
+      "targetTime": 19.384255128966313
     },
     {
       "name": "End Input",
-      "targetTime": 37.440941101309754
+      "targetTime": 45.663644192744556
     }
   ],
   "seed": 925275708

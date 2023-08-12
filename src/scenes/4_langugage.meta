@@ -2,28 +2,28 @@
   "version": 0,
   "timeEvents": [
     {
-      "name": "Stop Audio",
-      "targetTime": 63.17490228169644
+      "name": "audio-start",
+      "targetTime": 11.75173984123481
     },
     {
-      "name": "audio-start",
-      "targetTime": 10.410432082813903
+      "name": "Stop Audio",
+      "targetTime": 64.51621004011734
     },
     {
       "name": "Move Audio",
-      "targetTime": 20.5143622028126
+      "targetTime": 21.85566996123351
     },
     {
       "name": "text-start",
-      "targetTime": 32.36802675268571
+      "targetTime": 32.104939223639114
     },
     {
       "name": "Text End",
-      "targetTime": 38.95383204181958
+      "targetTime": 36.659717577400855
     },
     {
       "name": "selective-patterns",
-      "targetTime": 63.274802961557384
+      "targetTime": 64.61611071997828
     }
   ],
   "seed": 3076250640

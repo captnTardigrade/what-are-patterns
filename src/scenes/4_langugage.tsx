@@ -1,5 +1,5 @@
 import { Layout, Rect, Txt, makeScene2D } from "@motion-canvas/2d";
-import { colorScheme } from "../../color_scheme";
+import { colorScheme, transitionDuration } from "../../color_scheme";
 import {
   Direction,
   ThreadGenerator,
@@ -37,12 +37,12 @@ export default makeScene2D(function* (view) {
     />
   );
 
-  yield* slideTransition(Direction.Top);
-  yield* characterRef().opacity(1, 1.5);
+  yield* slideTransition(Direction.Top, transitionDuration);
 
-  yield* characterRef()
-    .fill(colorScheme.primary, 1.5)
-    .to(colorScheme.secondary, 1.5);
+  yield* all(
+    characterRef().opacity(1, 1.5),
+    characterRef().fill(colorScheme.primary, 1.5).to(colorScheme.secondary, 1.5)
+  );
 
   yield* characterRef().position(Vector2.fromDegrees(-90).scale(300), 1.5);
 
@@ -100,7 +100,7 @@ export default makeScene2D(function* (view) {
   yield* waitFor(useDuration("text-start"));
 
   yield* teluguTextRef().text(
-    "తినగా తినగా వేపాకు తియ్యగుండు",
+    "తినగ తినగ వేపాకు తియ్యగుండు",
     useDuration("Text End"),
     linear
   );

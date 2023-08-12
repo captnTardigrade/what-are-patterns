@@ -3,15 +3,15 @@
   "timeEvents": [
     {
       "name": "first-sentence",
-      "targetTime": 7.601630929727141
+      "targetTime": 6.423289536311636
     },
     {
       "name": "horse-sentence",
-      "targetTime": 24.03959736101828
+      "targetTime": 22.861255967602776
     },
     {
       "name": "end-example",
-      "targetTime": 45.12830291702993
+      "targetTime": 43.94996152361442
     }
   ],
   "seed": 1297377017

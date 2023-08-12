@@ -45,11 +45,17 @@ export default makeScene2D(function* (view) {
 
   const embeddings = createSignal<string[]>(genRandomNumbers());
 
+  const randomSentence = createSignal<string[]>("The cat is".split(" "));
+
   const inputVectorRef = createRef<Latex>();
   view.add(
     <Latex
       ref={inputVectorRef}
-      tex="{\color{white} \overrightarrow{w} = \begin{bmatrix} The \\ cat \\ is \end{bmatrix}}"
+      tex={() =>
+        String.raw`{\color{white} \overrightarrow{w} = \begin{bmatrix} ${randomSentence().join(
+          " \\\\ "
+        )} \end{bmatrix}}`
+      }
       height={400}
       width={400}
     />
@@ -245,8 +251,10 @@ export default makeScene2D(function* (view) {
     inputVectorRef().x(-600, 1),
     inputVectorRef().y(-400, 1),
     inputVectorRef().scale(0.75, 1),
-    inputVectorRef().x(-700, 1),
+    inputVectorRef().x(-700, 1)
   );
+
+  yield* waitFor(useDuration("embedding-table"));
 
   yield* all(
     embeddingTableRef().opacity(1, 1),
@@ -259,6 +267,14 @@ export default makeScene2D(function* (view) {
     functionEmbeddedRef().opacity(1, 1)
   );
 
+  const randomSentences = [
+    "The dog is dancing",
+    "An apple is falling",
+    "A cat is sleeping",
+    "Earth is round",
+  ];
+
+  yield* waitFor(useDuration("nn"));
   yield* nnLayoutRef().opacity(1, 1);
   const inputLoop: ThreadGenerator = yield loopUntil("End Input", () =>
     chain(
@@ -280,7 +296,14 @@ export default makeScene2D(function* (view) {
       backpropLine().start(0, 0),
       backpropLine().end(0, 0),
 
-      embeddings(genRandomNumbers(), 0)
+      embeddings(genRandomNumbers(), 0),
+
+      randomSentence(
+        randomSentences[useRandom().nextInt(0, randomSentences.length)]
+          .split(" ")
+          .slice(0, 3),
+        0
+      )
     )
   );
 

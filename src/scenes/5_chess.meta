@@ -3,15 +3,19 @@
   "timeEvents": [
     {
       "name": "src",
-      "targetTime": 8.834642863392327
+      "targetTime": 8.740877223120389
     },
     {
       "name": "chess-rules",
-      "targetTime": 29.680622082054004
+      "targetTime": 21.856038979480626
+    },
+    {
+      "name": "chess-rules-end",
+      "targetTime": 27.934808089616848
     },
     {
       "name": "the-chaos",
-      "targetTime": 66.41196542191138
+      "targetTime": 94.61655880675522
     }
   ],
   "seed": 4060828625

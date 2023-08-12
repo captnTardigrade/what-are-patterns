@@ -56,6 +56,8 @@ export default makeScene2D(function* (view) {
 
   yield* slideTransition(Direction.Left);
 
+  yield* waitFor(useDuration("show-gpt"));
+
   yield* imgRef().opacity(1, 2);
 
   yield* all(imgRef().scale(0.5, 2), imgRef().position([-200, 0], 2));
@@ -112,9 +114,13 @@ export default makeScene2D(function* (view) {
 
   yield* inputLineRef().end(1, 1);
 
+  yield* waitFor(useDuration("gpt-input"));
+
   yield* outputLineRef().end(1, 1);
 
   yield* outputTextRef().opacity(1, 1);
+
+  yield* waitFor(useDuration("gpt-output"));
 
   yield* inputTextRef().text("The dog is dancing", 1);
 
@@ -132,14 +138,23 @@ export default makeScene2D(function* (view) {
 
   yield* outputTextRef().text("raining", 1);
 
-  yield inputLineRef().end(0);
-  yield outputLineRef().end(0);
-  yield inputTextRef().opacity(0);
-  yield outputTextRef().opacity(0);
+  // yield* waitFor(useDuration("end-gpt-output"))
 
-  yield* imgRef().opacity(0, useDuration("clear-gpt"));
+  const clearDuration = useDuration("clear-gpt");
 
+  yield* all(
+    inputLineRef().opacity(0, clearDuration),
+    outputLineRef().opacity(0, clearDuration),
+    inputTextRef().opacity(0, clearDuration),
+    outputTextRef().opacity(0, clearDuration),
+    imgRef().opacity(0, clearDuration)
+  );
+
+  yield* waitFor(useDuration("ack"));
+
+
+  
   yield* all(ackRef().opacity(1, 1), layoutRef().opacity(1, 1));
-
+  
   yield* waitFor(useDuration("end"));
 });

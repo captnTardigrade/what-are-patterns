@@ -9,10 +9,13 @@ import {
 import { colorScheme, transitionDuration } from "../../color_scheme";
 import {
   Direction,
+  ThreadGenerator,
   all,
   createRef,
   createRefArray,
+  join,
   loopFor,
+  loopUntil,
   range,
   slideTransition,
   useDuration,
@@ -27,15 +30,18 @@ import { Knob } from "../components/Knob";
 export default makeScene2D(function* (view) {
   view.fill(colorScheme.background);
 
-  const networkImgRef = createRef<Img>();
+  const networkImgRef = createRef<Layout>();
   view.add(
-    <Img
-      src={nn}
+    <Layout
       ref={networkImgRef}
-      position={[0, 0]}
-      size={800}
       opacity={0}
-    />
+      layout
+      direction={"column"}
+      alignItems={"center"}
+    >
+      <Img src={nn} position={[0, 0]} size={800} />
+      <Txt text={"A function guesser"} fill={colorScheme.text} fontSize={40} />
+    </Layout>
   );
 
   const corpusImgRef = createRef<Img>();
@@ -80,20 +86,29 @@ export default makeScene2D(function* (view) {
   );
 
   const exOutputWord = createRef<Latex>();
+  const exOutputLayout = createRef<Layout>();
   view.add(
-    <Latex
-      ref={exOutputWord}
-      tex="{\color{white} sleeping}"
-      height={250}
-      width={250}
-      position={[300, 100]}
+    <Layout
+      ref={exOutputLayout}
       opacity={0}
-    />
+      layout
+      direction={"column"}
+      alignItems={"center"}
+    >
+      <Txt text={"Expected output"} fill={colorScheme.text} fontSize={40} />
+      <Latex
+        ref={exOutputWord}
+        tex="{\color{white} sleeping}"
+        height={250}
+        width={250}
+        position={[300, 100]}
+      />
+    </Layout>
   );
 
   const exOutputVector = createRef<Latex>();
   view.add(
-    <Layout ref={exOutputVector} opacity={0} position={[-80, 100]}>
+    <Layout ref={exOutputVector} opacity={0} position={[-350, 100]}>
       <Latex
         tex="{\color{white} \begin{bmatrix}   \vdots \\ 0 \\ \color{cyan} 1 \\ 0 \\ \vdots \end{bmatrix}}"
         height={400}
@@ -148,17 +163,15 @@ export default makeScene2D(function* (view) {
       </Layout>
 
       <Layout direction={"column"} rowGap={75}>
-        {...useRandom()
-          .intArray(3, 100, 999)
-          .map((word) => (
-            <Txt
-              text={`${word}`}
-              ref={inputTextRef}
-              fontSize={60}
-              fill={colorScheme.text}
-              opacity={0}
-            />
-          ))}
+        {...[643, 105, 500].map((word) => (
+          <Txt
+            text={`${word}`}
+            ref={inputTextRef}
+            fontSize={60}
+            fill={colorScheme.text}
+            opacity={0}
+          />
+        ))}
       </Layout>
       {...numKnobs.map((num) => {
         return (
@@ -175,8 +188,9 @@ export default makeScene2D(function* (view) {
   );
 
   const outputWordProb = createRef<Txt>();
+  const outputWordProbLayout = createRef<Layout>();
   view.add(
-    <Layout>
+    <Layout ref={outputWordProbLayout} opacity={0}>
       <Latex
         tex="{\color{white} P_{sleeping}}"
         height={300}
@@ -205,15 +219,23 @@ export default makeScene2D(function* (view) {
 
   yield* corpusImgRef().opacity(1, 2);
 
+  yield* waitFor(useDuration("sample-sentences"));
+
   // sample sentences
   yield* exDataPoint().opacity(1, 2);
+
+  yield* waitFor(useDuration("cat-cue"));
 
   yield* exDataPoint().text("The cat is sleeping", 2);
   yield* all(exDataPoint().fontSize(60, 2), exDataPoint().x(0, 2));
 
+  yield* waitFor(useDuration("end-sample-sentences"));
+
   yield* exInputVector().opacity(1, 2);
 
-  yield* exInputVector().position([-750, 0], 2);
+  yield* exInputVector().position([-750, 0], 1);
+
+  yield* exOutputLayout().opacity(1, 2).to(0, useDuration("end-output-word"));
 
   yield* exOutputWord().opacity(1, 2);
 
@@ -221,32 +243,56 @@ export default makeScene2D(function* (view) {
 
   yield* exOutputVector().opacity(1, 2);
 
-  yield* exOutputVector().position([-1050, 325], 2);
-
-  yield* exOutputVector().scale(0.8, 2);
-
-  // nn knobs
-  yield* nnRef().opacity(1, 2);
+  yield* waitFor(useDuration("output-vector-encoding"));
 
   yield* all(
-    ...knobsRef.map((knob) => knob.randomRotate(10)),
-    loopFor(10, () =>
+    exOutputVector().position([-1050, 325], 2),
+    exOutputVector().scale(0.8, 2)
+  );
+
+  // nn knobs
+  yield* all(nnRef().opacity(1, 2), outputWordProbLayout().opacity(1, 2));
+
+  yield* all(
+    ...knobsRef.map((knob) => knob.randomRotate(3)),
+    loopFor(3, () =>
       outputWordProb().text(`${useRandom().nextFloat().toFixed(3)}`, 0.5)
     )
   );
 
   yield* all(
-    knobsRef[0].randomRotate(10, knobsRef[0].rotation()),
-    loopFor(10, () =>
-      outputWordProb().text(`${useRandom().nextFloat().toFixed(3)}`, 1)
+    knobsRef[0].randomRotate(40, knobsRef[0].rotation()),
+    loopFor(40, () =>
+      outputWordProb().text(`${useRandom().nextFloat().toFixed(3)}`, 0.5)
+    ),
+    ...knobsRef.slice(3).map((knob) => knob.randomRotate(40, knob.rotation()))
+  );
+
+  yield* all(
+    ...knobsRef.map((knob) => knob.randomRotate(0.5)),
+    loopFor(0.5, () => outputWordProb().text(`1.000`, 0.5))
+  );
+
+  yield* waitFor(useDuration("wait-for-1"));
+
+  const nnLoop: ThreadGenerator = yield loopUntil("end-nn-loop", () =>
+    all(
+      ...knobsRef.map((knob) => knob.randomRotate(15)),
+      loopFor(15, () =>
+        outputWordProb().text(`${useRandom().nextFloat().toFixed(3)}`, 0.5)
+      )
     )
   );
 
+  yield* waitFor(useDuration("end-nn-knobs"));
+
   yield* all(...inputTextRef.map((word) => word.fill(colorScheme.accent, 2)));
+
+  yield* waitFor(useDuration("end-input-words"));
 
   yield* inputTextLayoutRef().position([-500, 0], 2);
 
   yield* all(...inputTextRef.splice(3, 6).map((word) => word.opacity(1, 2)));
 
-  yield* waitFor(useDuration("first-sentence"));
+  yield* join(nnLoop);
 });

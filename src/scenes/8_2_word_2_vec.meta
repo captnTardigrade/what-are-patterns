@@ -2,8 +2,16 @@
   "version": 0,
   "timeEvents": [
     {
+      "name": "words",
+      "targetTime": 16.40143301020538
+    },
+    {
+      "name": "embed-king",
+      "targetTime": 22.719321007150377
+    },
+    {
       "name": "end-embed",
-      "targetTime": 8
+      "targetTime": 33.4173516787088
     }
   ],
   "seed": 3056426886

@@ -39,7 +39,6 @@ export default makeScene2D(function* (view) {
 
   yield* wikiDefRef().getWord(4).fill(colorScheme.primary, 2);
 
-  yield* wikiDefRef().getWord(4).y(-100, 2);
   yield* wikiDefRef().getWord(4).text("regularity", 2);
 
 });
